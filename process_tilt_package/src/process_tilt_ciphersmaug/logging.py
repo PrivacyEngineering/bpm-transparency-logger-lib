@@ -2,13 +2,13 @@ import logging
 import sys
 from opentelemetry import trace
 
-TILT_LOG_FORMAT = str({
-    'timestamp': '%(asctime)s',
-    'case:concept:name':'%(case_concept_name)s',
-    'concept:name': '%(concept_name)s',
-    'message': '%(message)s',
-    'tilt': '%(tilt)s'
-})
+TILT_LOG_FORMAT = "{\
+    \"timestamp\": \"%(asctime)s\",\
+    \"case:concept:name\":\"%(case_concept_name)s\",\
+    \"concept:name\": \"%(concept_name)s\",\
+    \"message\": \"%(message)s\",\
+    \"tilt\": \"%(tilt)s\"\
+}"
 TILT_LOG_DEFAULTS = {
     'message': None,
 }
