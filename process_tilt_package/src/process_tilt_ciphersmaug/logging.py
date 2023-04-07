@@ -3,14 +3,14 @@ import sys
 from opentelemetry import trace
 
 TILT_LOG_FORMAT = str({
-    "timestamp": "%(asctime)s",
-    "case:concept:name":"%(case_concept_name)s",
-    "concept:name": "%(concept_name)s",
-    "message": "%(message)s",
-    "tilt": "%(tilt)s"
+    'timestamp': '%(asctime)s',
+    'case:concept:name':'%(case_concept_name)s',
+    'concept:name': '%(concept_name)s',
+    'message': '%(message)s',
+    'tilt': '%(tilt)s'
 })
 TILT_LOG_DEFAULTS = {
-    "message": None,
+    'message': None,
 }
 
 class TiltLogger:
@@ -32,9 +32,9 @@ class TiltLogger:
             def tilt_logging(*args,**kwargs):
                 with self.tracer.start_as_current_span(concept_name) as span:
                     self.logger.log(level = level, msg = msg, extra = {
-                        "case_concept_name": hex(span.get_span_context().trace_id),
-                        "concept_name": concept_name,
-                        "tilt": tilt
+                        'case_concept_name': hex(span.get_span_context().trace_id),
+                        'concept_name': concept_name,
+                        'tilt': tilt
                         })
                     return original_function(*args,**kwargs)
             return tilt_logging

@@ -1,8 +1,5 @@
-# transparency-logging
-```
-podman build -t tilt-frontend ./src/frontend/
-podman run -d -p 8080:8080 --name my-container localhost/tilt-frontend:latest 
-podman container rm my-container
+# Building
+https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
-podman exec -it my-container /bin/bash
 ```
+python -m build
