@@ -2,13 +2,7 @@ import logging
 import sys
 from opentelemetry import trace
 
-TILT_LOG_FORMAT = "{\
-    \"timestamp\": \"%(asctime)s\",\
-    \"case:concept:name\":\"%(case_concept_name)s\",\
-    \"concept:name\": \"%(concept_name)s\",\
-    \"message\": \"%(message)s\",\
-    \"tilt\": \"%(tilt)s\"\
-}"
+TILT_LOG_FORMAT = "{\"time:timestamp\": \"%(asctime)s\",\"case:concept:name\":\"%(case_concept_name)s\",\"concept:name\": \"%(concept_name)s\",\"message\": \"%(message)s\",\"tilt\": \"%(tilt)s\"}"
 TILT_LOG_DEFAULTS = {
     'message': None,
 }
@@ -16,8 +10,7 @@ TILT_LOG_DEFAULTS = {
 class TiltLogger:
     def __init__(self,log_name,tracer = None) -> None:
         self.logger : logging.Logger = logging.getLogger(log_name)
-        formatter = logging.Formatter(fmt=TILT_LOG_FORMAT, defaults=TILT_LOG_DEFAULTS,
-                                  datefmt=logging.Formatter.default_msec_format)
+        formatter = logging.Formatter(fmt=TILT_LOG_FORMAT, defaults=TILT_LOG_DEFAULTS)
         stream_handler = logging.StreamHandler(sys.stdout)
         stream_handler.setFormatter(formatter)
         self.logger.addHandler(stream_handler)
